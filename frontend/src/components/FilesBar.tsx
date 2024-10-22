@@ -31,9 +31,9 @@ const FilesBar: React.FC = () => {
   }, [uploadCount, setUploadedFiles]);
 
   return (
-    <div className="p-4 grid grid-cols-7 gap-2"> {/* Reduced gap here */}
+    <div className="p-4 grid grid-cols-7 gap-2"> 
       {uploadedFiles.map((image, index) => (
-        <div key={index} className="bg-gray-200 rounded overflow-hidden w-16 h-16 flex items-center justify-center"> {/* Adjusted size here */}
+        <div key={index} className="bg-gray-200 rounded overflow-hidden w-16 h-16 flex items-center justify-center"> 
           <img
             src={image}
             alt={`Uploaded File ${index + 1}`}

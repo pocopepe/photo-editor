@@ -1,6 +1,6 @@
 import { FabricJSCanvas, useFabricJSEditor } from 'fabricjs-react';
 import { useEffect, useRef } from 'react';
-import * as fabric from 'fabric'; // Import fabric as a namespace
+import * as fabric from 'fabric'; 
 
 function MainEditor() {
   const { editor, onReady } = useFabricJSEditor();
@@ -15,34 +15,28 @@ function MainEditor() {
     editor?.addRectangle();
   };
 
-  // Function to handle zooming using mouse wheel
   const handleZoom = (event: WheelEvent) => {
-    event.preventDefault(); // Prevent default scroll behavior
-    const zoomAmount = 0.1; // Amount to zoom in/out
+    event.preventDefault(); 
+    const zoomAmount = 0.1; 
     const canvas = editor?.canvas;
 
     if (canvas) {
-      // Determine the direction of the wheel scroll
       if (event.deltaY < 0) {
-        // Zoom in
         canvas.setZoom(canvas.getZoom() + zoomAmount);
       } else {
-        // Zoom out
         canvas.setZoom(canvas.getZoom() - zoomAmount);
       }
     }
   };
 
-  // Mouse down event for panning with Control key
   const handleMouseDown = (event: MouseEvent) => {
     if (event.ctrlKey) {
       isPanning.current = true;
       lastPos.current = { x: event.clientX, y: event.clientY };
-      editor?.canvas.set('selection', false); // Deselect any objects
+      editor?.canvas.set('selection', false); 
     }
   };
 
-  // Mouse move event for panning
   const handleMouseMove = (event: MouseEvent) => {
     if (isPanning.current) {
       const canvas = editor?.canvas;
@@ -50,20 +44,17 @@ function MainEditor() {
       const deltaY = event.clientY - lastPos.current.y;
 
       if (canvas) {
-        // Pan the canvas
         canvas.relativePan(new fabric.Point(deltaX, deltaY));
       }
 
-      lastPos.current = { x: event.clientX, y: event.clientY }; // Update last position
+      lastPos.current = { x: event.clientX, y: event.clientY };
     }
   };
 
-  // Mouse up event to stop panning
   const handleMouseUp = () => {
-    isPanning.current = false; // Stop panning
+    isPanning.current = false; 
   };
 
-  // Effect to add event listeners for zooming and panning
   useEffect(() => {
     const canvasElement = document.querySelector('.sample-canvas');
 
@@ -72,10 +63,9 @@ function MainEditor() {
       canvasElement.addEventListener('mousedown', handleMouseDown as EventListener);
       canvasElement.addEventListener('mousemove', handleMouseMove as EventListener);
       canvasElement.addEventListener('mouseup', handleMouseUp as EventListener);
-      canvasElement.addEventListener('mouseleave', handleMouseUp as EventListener); // Stop panning if mouse leaves canvas
+      canvasElement.addEventListener('mouseleave', handleMouseUp as EventListener);
     }
 
-    // Cleanup event listeners on component unmount
     return () => {
       if (canvasElement) {
         canvasElement.removeEventListener('wheel', handleZoom as EventListener);

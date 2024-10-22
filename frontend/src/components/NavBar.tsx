@@ -2,19 +2,19 @@ import { useRecoilState } from 'recoil';
 import { uploadedFilesAtom } from '../recoil/atoms';
 
 function NavBar() {
-    const [uploadedFiles, setUploadedFiles] = useRecoilState(uploadedFilesAtom); // Assuming uploadedFilesAtom holds the array of uploaded files
+    const [uploadedFiles, setUploadedFiles] = useRecoilState(uploadedFilesAtom); 
 
     const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]; // Get the uploaded file (optional chaining to handle null case)
+        const file = event.target.files?.[0];
         if (file) {
-            const reader = new FileReader(); // Create a FileReader to read the file
+            const reader = new FileReader(); 
             reader.onload = (e) => {
-                const fileData = e.target?.result as string; // Get the file data as a data URL or text
-                const newUploadedFiles = [...uploadedFiles, fileData]; // Add the new file data to the existing list
-                localStorage.setItem(`uploadedFile_${uploadedFiles.length}`, fileData); // Store the file data in local storage with a unique key
-                setUploadedFiles(newUploadedFiles); // Update the Recoil state with the new list
+                const fileData = e.target?.result as string; 
+                const newUploadedFiles = [...uploadedFiles, fileData]; 
+                localStorage.setItem(`uploadedFile_${uploadedFiles.length}`, fileData); 
+                setUploadedFiles(newUploadedFiles);
             };
-            reader.readAsDataURL(file); // Read the file as a Data URL (for images)
+            reader.readAsDataURL(file); 
         }
     };
 
@@ -23,10 +23,10 @@ function NavBar() {
             <div className="flex items-center">
                 <input
                     type="file"
-                    accept="image/*" // Change this according to the types of files you want to accept
+                    accept="image/*"
                     onChange={handleFileUpload}
-                    className="hidden" // Hide the default file input
-                    id="file-upload" // Give it an id for the label to access
+                    className="hidden" 
+                    id="file-upload" 
                 />
                 <label
                     htmlFor="file-upload"

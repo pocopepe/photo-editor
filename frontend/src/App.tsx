@@ -10,12 +10,10 @@ function App() {
     <div className="h-screen flex flex-col overflow-hidden">
       <NavBar />
       <div className="flex flex-1 overflow-hidden">
-        {/* Fixed SideBar */}
         <div className="w-[5%] bg-gray-800">
           <SideBar />
         </div>
 
-        {/* Main Editor Section */}
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 bg-gray-100">
             <MainEditor />
