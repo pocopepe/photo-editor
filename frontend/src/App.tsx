@@ -1,5 +1,4 @@
 import NavBar from './components/NavBar';
-import SideBar from './components/SideBar';
 import MainEditor from './components/MainEditor';
 import FilesBar from './components/FilesBar';
 import { RecoilRoot } from 'recoil';
@@ -10,9 +9,7 @@ function App() {
     <div className="h-screen flex flex-col overflow-hidden">
       <NavBar />
       <div className="flex flex-1 overflow-hidden">
-        <div className="w-[5%] bg-gray-800">
-          <SideBar />
-        </div>
+      
 
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="flex-1 bg-gray-100">
